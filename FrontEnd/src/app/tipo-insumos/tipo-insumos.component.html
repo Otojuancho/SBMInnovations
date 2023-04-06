@@ -1,0 +1,120 @@
+<div style="text-align:center">
+  <h2>
+    <br>
+    <b>{{ title }}</b>
+  </h2>
+</div>
+<br><br>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para crear un tipo de insumo -->
+<div class="crea text-light">
+  <h4 align="center"><i><b>Crear un Tipo de Insumo: </b></i></h4>
+  <form (ngSubmit)="InsertarTipInsu()" [formGroup]="InsertarGTipInsu">
+    <br>
+    <label align="center">Nombre Tipo de Insumo:</label>
+    <input type="text" formControlName="textTipIns" placeholder="Ingrese Nombre">
+    <br>
+    <label align="center">Inicial Tipo de Insumo:</label>
+    <input type="text" formControlName="textiniTipIns" placeholder="Ingrese Iniciales">
+    <!-- <div *ngIf="submitted && g.textTipIns.errors && g.textiniTipIns.errors " class="invalid-feedback">
+      <div *ngIf="g.textTipIns.errors.required" class="error-validate"> Id requerido</div>
+    </div> -->
+    <br><br>
+    <div style="text-align:center;">
+      <button type="submit" style="position: absolute; left:70%; top:76%; width:150px;">Insertar TI</button>
+    </div>
+    <br>
+    <div style="text-align:center;">
+      <input type="reset" value="Limpiar Campos" style="position: absolute; left:70%; top:58%; width:150px;">
+    </div>
+  </form>
+  <br>
+</div>
+<br><br>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para actualizar un tipo de insumo -->
+<div class="edit text-light">
+<h4 align="center" style="position: absolute; left:20%;"><i><b>Editar un Tipo de Insumo:</b></i></h4>
+<form (ngSubmit)="buscarEditarTipInsu(1)" [formGroup]="ActualizarATipInsu" style="position: absolute; left:5%; top:45px;">
+  ID Tipo Insumo:<input type="text" formControlName="ActualizarIdTipIns" placeholder="Ingrese ID de TI" style="position: absolute; left:105%; top:10;">
+  <!-- <div *ngIf="submitted && f.ActualizarIdipInsu.errors" class="invalid-feedback">
+    <div *ngIf="f.ActualizarIdipInsu.errors.required" class="error-validate">Id requerido</div>
+  </div> -->
+  <button type="submit" style="position: absolute; left:268%; top:0%;">Buscar</button>
+  <br><br>
+  <li *ngFor="let tial of MiTipInsuE" style="position: absolute; left:10%;">
+    <label>Nuevo Tipo de Insumo</label>
+    <input type="text" [value]="tial.tipo_insumo" formControlName="nuevoTipIns" placeholder="Nuevo Tipo Insumo">
+    <br>
+    <label>Nuevas Iniciales</label>
+    <input type="text" [value]="tial.inicial_tipo_insumo" formControlName="nuevoIniTipIns" placeholder="Iniciales Tipo Insumo">
+  </li>
+  <br>
+  <div style="text-align:center;">
+    <button (click)="ActualizarTipIns()" style="position: absolute; left:320%; top:80%; width:160px;">Actualizar TI</button>
+  </div>
+  <br><br>
+  <div style="text-align:center;">
+    <input type="reset" value="Limpiar Campos" style="position: absolute; left:320%; top:55%; width:160px;">
+  </div>
+  <br><br>
+</form>
+</div>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para mostrar un solo tipo de insumo -->
+<div class="bus text-light" style="clear: both;">
+<div>
+<h4 align="center"><i><b>Buscar un Tipo de Insumo por su ID</b></i></h4>
+<form (ngSubmit)="buscarTipInsus(1)" [formGroup]="filtrarTipInsu">
+  <label align="center">Ingrese un ID de TI a Buscar:</label>
+  <input type="text" formControlName="textfiltro" placeholder="Ingrese ID">
+  <button type="submit">Buscar</button>
+  <br><br>
+  <!-- <div *ngIf="submitted && f.textfiltro.errors" class="invalid-feedback">
+    <div *ngIf="f.textfiltro.errors.required" class="error-validate"> Id requerido</div>
+  </div> -->
+</form>
+<h2>{{tituloTipInsu}}</h2>
+<table class="table table-striped text-light">
+  <thead>
+    <tr>
+      <th>--ID--</th>
+      <th>Tipo Insumo</th>
+      <th>Iniciales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tial of MiTipInsu">
+      <td>{{ tial.id_tipo_insumo }}</td>
+      <td>{{ tial.tipo_insumo }}</td>
+      <td>{{ tial.inicial_tipo_insumo }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para mostrar el listado de tipos de insumos -->
+<h4 align="center"><i><b>Todos los Tipos de Insumos: </b></i></h4>
+<button (click)="consultaTipInsus()" class="float-center">Consultar</button>
+<table class="table table-striped text-light">
+  <thead>
+    <tr>
+      <th>--ID--</th>
+      <th>Tipo Insumo</th>
+      <th>Iniciales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tial of TipInsus">
+      <td>{{ tial.id_tipo_insumo }}</td>
+      <td>{{ tial.tipo_insumo }}</td>
+      <td>{{ tial.inicial_tipo_insumo }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br><br>

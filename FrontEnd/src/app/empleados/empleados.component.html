@@ -1,0 +1,192 @@
+<div style="text-align:center">
+  <h2>
+    <br>
+    <b>{{ title }}</b>
+  </h2>
+</div>
+<br><br>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para crear un empleado -->
+<div class="crea text-light">
+  <h4 align="center"><i><b>Crear un Empleado: </b></i></h4>
+  <form (ngSubmit)="InsertarEmpleado()" [formGroup]="InsertarGEmpleado">
+    <br>
+    <label align="center">Numero de Documento:</label>
+    <input type="text" formControlName="textDocEmpleado" placeholder="Ingrese No. Doc">
+    <br>
+    <label align="center">Primer Nombre:</label>
+    <input type="text" formControlName="textNom1Empleado" placeholder="Primer Nombre">
+    <br>
+    <label align="center">Segundo Nombre:</label>
+    <input type="text" formControlName="textNom2Empleado" placeholder="Segundo Nombre">
+    <br>
+    <label align="center">Primer Apellido:</label>
+    <input type="text" formControlName="textApe1Empleado" placeholder="Primer Apellido">
+    <br>
+    <label align="center">Sexo:</label>
+    <input type="text" formControlName="textSexEmpleado" placeholder="Sexo">
+    <br>
+    <label align="center">Vigencia:</label>
+    <input type="text" formControlName="textVigEmpleado" placeholder="0 o 1">
+    <br>
+    <label align="center">Rol:</label>
+    <input type="text" formControlName="textRolEmpleado" placeholder="Rol">
+    <br>
+    <label align="center">ID de Tipo de Documento:</label>
+    <input type="text" formControlName="textTdocEmpleado" placeholder="Tipo documento">
+    <!-- <div *ngIf="submitted && g.textTipDoc.errors && g.textiniTipDoc.errors " class="invalid-feedback">
+      <div *ngIf="g.textTipDoc.errors.required" class="error-validate"> Id requerido</div>
+    </div> -->
+    <br><br>
+    <div style="text-align:center;">
+      <button type="submit" style="position:absolute; left:66%; top:88%; width:150px;">Insertar EMP</button>
+    </div>
+    <br>
+    <div style="text-align:center;">
+      <input type="reset" value="Limpiar Campos" style="position:absolute; left:66%; top:80%; width:150px;">
+    </div>
+  </form>
+  <br>
+</div>
+<br><br>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para actualizar un empleado -->
+<div class="edit text-light">
+<h4 align="center" style="position:absolute; left:30%;"><i><b>Editar un Empleado:</b></i></h4>
+<form (ngSubmit)="buscarEditarEmpleado(1)" [formGroup]="ActualizarAEmpleado" style="position:absolute; left:5%; top:45px;">
+  ID Empleado:<input type="text" formControlName="ActualizarDocEmpleado" placeholder="Ingrese ID de EMP" style="position: absolute; left:106%; top:10;">
+  <!-- <div *ngIf="submitted && f.ActualizarIdipDoc.errors" class="invalid-feedback">
+    <div *ngIf="f.ActualizarIdipDoc.errors.required" class="error-validate">Id requerido</div>
+  </div> -->
+  <button type="submit" style="position:absolute; left:299%; top:0%;">Buscar</button>
+  <br><br>
+  <li *ngFor="let tial of MiEmpleadoE" style="position:absolute; left:0%;">
+    <label>No.Documento</label>
+    <input type="text" [value]="tial.num_doc_empleado" formControlName="ActualizarDocEmpleado" placeholder="Nuevo Documento">
+    <br>
+    <label>Primer Nombre</label>
+    <input type="text" [value]="tial.nombre1_empleado" formControlName="nuevoNom1" placeholder="Primer Nombre">
+    <br>
+    <label>Segundo Nombre</label>
+    <input type="text" [value]="tial.nombre2_empleado" formControlName="nuevoNom2" placeholder="Segundo Nombre">
+    <br>
+    <label>Primer Apellido</label>
+    <input type="text" [value]="tial.apellido1_empleado" formControlName="nuevoApe1" placeholder="Primer Apellido">
+    <br>
+    <label>Segundo apellido</label>
+    <input type="text" [value]="tial.apellido2_empleado" formControlName="nuevoApe2" placeholder="Segundo Apellido">
+    <br>
+    <label>Fecha de Nacimiento</label>
+    <input type="date" [value]="tial.fecha_naci_empleado" formControlName="nuevoNaci" placeholder="Fecha Nacimiento">
+    <br>
+    <div style="position:absolute; left:200px; top:0px;">
+    <label>Sexo</label>
+    <input type="text" [value]="tial.sexo_empleado" formControlName="nuevoSex" placeholder="Sexo">
+    <br>
+    <label>1(Activo) o 0(Inactivo)</label>
+    <input type="text" [value]="tial.vigencia_empleado" formControlName="nuevoVig" placeholder="Vigencia">
+    <br>
+    <label>Rol</label>
+    <input type="text" [value]="tial.rol_empleado" formControlName="nuevoRol" placeholder="Rol">
+    <br>
+    <label>Tipo de Documento</label>
+    <input type="text" [value]="tial.id_tip_doc" formControlName="nuevoTdoc" placeholder="T. Documento">
+    </div>
+  </li>
+  <br>
+  <div style="text-align:center; position:absolute; left:295px; top:390px; width:280px">
+    <button (click)="ActualizarEmpleado()">Actualizar EMP</button>
+  </div>
+  <br><br>
+  <div style="text-align:center; position:absolute; left:305px; top:350px; width:260px;">
+    <input type="reset" value="Limpiar Campos">
+  </div>
+  <br><br>
+</form>
+</div>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para mostrar un solo empleado -->
+<div class="bus text-light" style="clear: both;">
+<div>
+<h4 align="center"><i><b>Buscar un Empleado por su ID</b></i></h4>
+<form (ngSubmit)="buscarEmpleados(1)" [formGroup]="filtrarEmpleado" >
+  <label align="center">Ingrese un ID de EMP a Buscar:</label>
+  <input type="text" formControlName="textfiltro" placeholder="Ingrese ID">
+  <button type="submit">Buscar</button>
+  <br><br>
+  <!-- <div *ngIf="submitted && f.textfiltro.errors" class="invalid-feedback">
+    <div *ngIf="f.textfiltro.errors.required" class="error-validate"> Id requerido</div>
+  </div> -->
+</form>
+<h2>{{tituloEmpleado}}</h2>
+<table class="table table-striped text-light">
+  <thead>
+    <tr>
+      <th>--ID--</th>
+      <th>Tipo Doc</th>
+      <th>No. Documento</th>
+      <th>1er. Nombre</th>
+      <th>2do. Nombre</th>
+      <th>1er. Apellido</th>
+      <th>2do. Apellido</th>
+      <th>Fecha Nacimiento</th>
+      <th>Sexo</th>
+      <th>Vigencia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tial of MiEmpleado">
+      <td>{{ tial.id_empleado }}</td>
+      <td>{{ tial.id_tip_doc }}</td>
+      <td>{{ tial.num_doc_empleado }}</td>
+      <td>{{ tial.nombre1_empleado }}</td>
+      <td>{{ tial.nombre2_empleado }}</td>
+      <td>{{ tial.apellido1_empleado }}</td>
+      <td>{{ tial.apellido2_empleado }}</td>
+      <td>{{ tial.fecha_naci_empleado }}</td>
+      <td>{{ tial.sexo_empleado }}</td>
+      <td>{{ tial.vigencia_empleado }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para mostrar el listado de empleados -->
+<h4 align="center"><i><b>Todos los Empleados: </b></i></h4>
+<button (click)="consultaEmpleados()" class="float-center">Consultar</button>
+<table class="table table-striped text-light">
+  <thead>
+    <tr>
+      <th>--ID--</th>
+      <th>Tipo Doc</th>
+      <th>No. Documento</th>
+      <th>1er. Nombre</th>
+      <th>2do. Nombre</th>
+      <th>1er. Apellido</th>
+      <th>2do. Apellido</th>
+      <th>Fecha Nacimiento</th>
+      <th>Sexo</th>
+      <th>Vigencia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tial of Empleados">
+      <td>{{ tial.id_empleado }}</td>
+      <td>{{ tial.id_tip_doc }}</td>
+      <td>{{ tial.num_doc_empleado }}</td>
+      <td>{{ tial.nombre1_empleado }}</td>
+      <td>{{ tial.nombre2_empleado }}</td>
+      <td>{{ tial.apellido1_empleado }}</td>
+      <td>{{ tial.apellido2_empleado }}</td>
+      <td>{{ tial.fecha_naci_empleado }}</td>
+      <td>{{ tial.sexo_empleado }}</td>
+      <td>{{ tial.vigencia_empleado }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br><br>

@@ -1,0 +1,130 @@
+<div style="text-align:center">
+  <h2>
+    <br>
+    <b>{{ title }}</b>
+  </h2>
+</div>
+<br><br>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para crear una produccion -->
+<div class="crea text-light">
+  <h4 align="center"><i><b>Crear una Produccion: </b></i></h4>
+  <form (ngSubmit)="InsertarProduccion()" [formGroup]="InsertarGProduccion">
+    <br>
+    <label  align="center">Producto de Produccion:</label>
+    <input type="text" formControlName="textProdProd" placeholder="Producto Produccion">
+    <br>
+    <label  align="center">Fecha de Registro:</label>
+    <input type="date" formControlName="textFechReg" placeholder="Fecha de Registro">
+    <br>
+    <label align="center">Id de Empleado:</label>
+    <input type="text" formControlName="textIdEmpleado" placeholder="Id Empleado">
+    <!-- <div *ngIf="submitted && g.textTipDoc.errors && g.textiniTipDoc.errors " class="invalid-feedback">
+      <div *ngIf="g.textTipDoc.errors.required" class="error-validate"> Id requerido</div>
+    </div> -->
+    <br><br>
+    <div style="text-align:center;">
+      <button type="submit" style="position:absolute; left:70%; top:85%; width:150px;">Insertar PRODU</button>
+    </div>
+    <br>
+    <div style="text-align:center;">
+      <input type="reset" value="Limpiar Campos" style="position:absolute; left:70%; top:73%; width:150px;">
+    </div>
+  </form>
+  <br>
+</div>
+<br><br>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para actualizar una produccion -->
+<div class="edit text-light">
+<h4 align="center" style="position:absolute; left:30%;"><i><b>Editar una Produccion:</b></i></h4>
+<form (ngSubmit)="buscarEditarProduccion(1)" [formGroup]="ActualizarAProduccion" style="position:absolute; left:5%; top:45px;">
+  ID Produccion:<input type="text" formControlName="ActualizarIdProduccion" placeholder="Ingrese ID de PRODU" style="position:absolute; left:105%; top:10;">
+  <!-- <div *ngIf="submitted && f.ActualizarIdipDoc.errors" class="invalid-feedback">
+    <div *ngIf="f.ActualizarIdipDoc.errors.required" class="error-validate">Id requerido</div>
+  </div> -->
+  <button type="submit" style="position:absolute; left:281%; top:0%;">Buscar</button>
+  <br><br>
+  <li *ngFor="let tial of MiProduccionE" style="position:absolute; left:0%;">
+    <label>Producto de Produccion</label>
+    <input type="text" [value]="tial.producto_produccion" formControlName="nuevoProdProd" placeholder="Producto Produccion">
+    <br>
+    <label>Fecha de Registro</label>
+    <input type="date" [value]="tial.fecha_registro" formControlName="nuevoFechReg" placeholder="Fecha Registro">
+    <br>
+    <label>Id de Empleado</label>
+    <input type="text" [value]="tial.id_empleado" formControlName="nuevoIdEmp" placeholder="ID Empleado">
+  </li>
+  <br>
+  <div style="text-align:center; position:absolute; left:320px; top:247px; width:280px">
+    <button (click)="ActualizarProduccion()">Actualizar PRODU</button>
+  </div>
+  <br><br>
+  <div style="text-align:center; position:absolute; left:332px; top:207px; width:260px;">
+    <input type="reset" value="Limpiar Campos">
+  </div>
+  <br><br>
+</form>
+</div>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para mostrar una sola produccion -->
+<div class="bus text-light" style="clear: both;">
+<div>
+<h4 align="center"><i><b>Buscar una Produccion por su ID</b></i></h4>
+<form (ngSubmit)="buscarProducciones(1)" [formGroup]="filtrarProduccion">
+  <label align="center">Ingrese un ID de PROD a buscar:</label>
+  <input type="text" formControlName="textfiltro" placeholder="Ingrese ID">
+  <button type="submit">Buscar</button>
+  <br><br>
+  <!-- <div *ngIf="submitted && f.textfiltro.errors" class="invalid-feedback">
+    <div *ngIf="f.textfiltro.errors.required" class="error-validate"> Id requerido</div>
+  </div> -->
+</form>
+<h2>{{tituloProduccion}}</h2>
+<table class="table table-striped text-light">
+  <thead>
+    <tr>
+      <th>--ID--</th>
+      <th>Producto Produccion</th>
+      <th>Fecha Registro</th>
+      <th>ID de Empleado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tial of MiProduccion">
+      <td>{{ tial.id_produccion }}</td>
+      <td>{{ tial.producto_produccion }}</td>
+      <td>{{ tial.fecha_registro }}</td>
+      <td>{{ tial.id_empleado }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para mostrar el listado de producciones -->
+<h4 align="center"><i><b>Todas las Producciones: </b></i></h4>
+<button (click)="consultaProducciones()" class="float-center">Consultar</button>
+<table class="table table-striped text-light">
+  <thead>
+    <tr>
+      <th>--ID--</th>
+      <th>Producto Produccion</th>
+      <th>Fecha Registro</th>
+      <th>ID de Empleado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tial of Producciones">
+      <td>{{ tial.id_produccion }}</td>
+      <td>{{ tial.producto_produccion }}</td>
+      <td>{{ tial.fecha_registro }}</td>
+      <td>{{ tial.id_empleado }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br><br>

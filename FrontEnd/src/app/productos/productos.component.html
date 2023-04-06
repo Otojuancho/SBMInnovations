@@ -1,0 +1,120 @@
+<div style="text-align:center">
+  <h2>
+    <br>
+    <b>{{ title }}</b>
+  </h2>
+</div>
+<br><br>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para crear un producto -->
+<div class="crea text-light">
+  <h4 align="center"><i><b>Crear un Producto: </b></i></h4>
+  <form (ngSubmit)="InsertarProducto()" [formGroup]="InsertarGProducto">
+    <br>
+    <label align="center">Nombre Producto:</label>
+    <input type="text" formControlName="textNomProducto" placeholder="Nombre Producto">
+    <br>
+    <label align="center">Tipo Producto:</label>
+    <input type="text" formControlName="textIdTipProd" placeholder="ID Tipo Producto">
+    <!-- <div *ngIf="submitted && g.textTipDoc.errors && g.textiniTipDoc.errors " class="invalid-feedback">
+      <div *ngIf="g.textTipDoc.errors.required" class="error-validate"> Id requerido</div>
+    </div> -->
+    <br><br>
+    <div style="text-align:center;">
+      <button type="submit" style="position:absolute; left:70%; top:76%; width:150px;">Insertar PROD</button>
+    </div>
+    <br>
+    <div style="text-align:center;">
+      <input type="reset" value="Limpiar Campos" style="position:absolute; left:70%; top:58%; width:150px;">
+    </div>
+  </form>
+  <br>
+</div>
+<br><br>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para actualizar un producto -->
+<div class="edit text-light">
+<h4 align="center" style="position:absolute; left:30%;"><i><b>Editar un Producto:</b></i></h4>
+<form (ngSubmit)="buscarEditarProducto(1)" [formGroup]="ActualizarAProducto" style="position:absolute; left:5%; top:45px;">
+  ID Producto:<input type="text" formControlName="ActualizarIdProducto" placeholder="Ingrese ID de PROD" style="position:absolute; left:105%; top:10;">
+  <!-- <div *ngIf="submitted && f.ActualizarIdipDoc.errors" class="invalid-feedback">
+    <div *ngIf="f.ActualizarIdipDoc.errors.required" class="error-validate">Id requerido</div>
+  </div> -->
+  <button type="submit" style="position:absolute; left:311%; top:0%;">Buscar</button>
+  <br><br>
+  <li *ngFor="let tial of MiProductoE" style="position:absolute; left:10%;">
+    <label>Nombre de Producto</label>
+    <input type="text" [value]="tial.nombre_producto" formControlName="nuevoNomProd" placeholder="Nombre Producto">
+    <br>
+    <label>Tipo Producto</label>
+    <input type="text" [value]="tial.id_tipo_producto" formControlName="nuevoIdTipProd" placeholder="ID Tipo Producto">
+  </li>
+  <br>
+  <div style="text-align:center;">
+    <button (click)="ActualizarProducto()" style="position:absolute; left:404%; top:80%; width:160px;">Actualizar PROD</button>
+  </div>
+  <br><br>
+  <div style="text-align:center;">
+    <input type="reset" value="Limpiar Campos" style="position:absolute; left:404%; top:55%; width:160px;">
+  </div>
+  <br><br>
+</form>
+</div>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para mostrar un solo producto -->
+<div class="bus text-light" style="clear: both;">
+<div>
+<h4 align="center"><i><b>Buscar un Producto por su ID</b></i></h4>
+<form (ngSubmit)="buscarProductos(1)" [formGroup]="filtrarProducto">
+  <label align="center">Ingrese un ID de PROD a buscar:</label>
+  <input type="text" formControlName="textfiltro" placeholder="Ingrese ID">
+  <button type="submit">Buscar</button>
+  <br><br>
+  <!-- <div *ngIf="submitted && f.textfiltro.errors" class="invalid-feedback">
+    <div *ngIf="f.textfiltro.errors.required" class="error-validate"> Id requerido</div>
+  </div> -->
+</form>
+<h2>{{tituloProducto}}</h2>
+<table class="table table-striped text-light">
+  <thead>
+    <tr>
+      <th>--ID--</th>
+      <th>Nombre Producto</th>
+      <th>Tipo Producto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tial of MiProducto">
+      <td>{{ tial.id_producto }}</td>
+      <td>{{ tial.nombre_producto }}</td>
+      <td>{{ tial.id_tipo_producto }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- para mostrar el listado de productos -->
+<h4 align="center"><i><b>Todas los Productos: </b></i></h4>
+<button (click)="consultaProductos()" class="float-center">Consultar</button>
+<table class="table table-striped text-light">
+  <thead>
+    <tr>
+      <th>--ID--</th>
+      <th>Nombre Producto</th>
+      <th>Tipo Producto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tial of Productos">
+      <td>{{ tial.id_producto }}</td>
+      <td>{{ tial.nombre_producto }}</td>
+      <td>{{ tial.id_tipo_producto }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br><br>
